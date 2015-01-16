@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndroidNoteApp</string>
+    <string name="title_activity_note_edit">Edit Note</string>
+    <string name="title_activity_note_list">Noteworthy</string>
+    <string name="action_addnote">Add Note</string>
+    <string name="menu_deletenote">Delete Note</string>
+
+</resources>
