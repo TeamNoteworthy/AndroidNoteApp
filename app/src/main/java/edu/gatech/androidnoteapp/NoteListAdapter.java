@@ -37,7 +37,7 @@ public class NoteListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return getItem(position).getID();
     }
 
     @Override
