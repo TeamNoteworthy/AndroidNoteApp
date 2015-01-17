@@ -86,13 +86,13 @@ public class Note {
     /**
      * Sets the Date of the last edit to the note
      */
-    public Date setDate(Date newDate){
+    public void setDate(Date newDate){
     	lastEditDate = newDate;
     }
     /**
      * Sets the Color of the note
      */
-    public Color setColor(Color newColor){
+    public void setColor(Color newColor){
     	displayColor = newColor;
     }
     

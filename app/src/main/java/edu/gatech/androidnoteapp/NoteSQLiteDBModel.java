@@ -9,11 +9,11 @@ public class NoteSQLiteDBModel implements NoteDBModel {
 
     public ArrayList<Note> loadNotes() {
         Note t1 = new Note();
-        t1.titleText = "abc";
+        t1.setTitle("abc");
         Note t2 = new Note();
-        t2.titleText = "def";
+        t2.setTitle("def");
         Note t3 = new Note();
-        t3.titleText = "123";
+        t3.setTitle("123");
         ArrayList<Note> noteList = new ArrayList<Note>();
         noteList.add(t1);
         noteList.add(t2);
