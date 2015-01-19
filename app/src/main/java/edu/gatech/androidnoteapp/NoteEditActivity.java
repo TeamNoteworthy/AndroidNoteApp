@@ -15,5 +15,33 @@ public class NoteEditActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_edit);
+        getActionBar().setDisplayHomeAsUpEnabled(true); //Activates the actionbar button at the top
+    }
+
+    /**
+     * Executed when we want to back to the main class. Still incomplete, saving to the database needs to be implemented
+     */
+    private void saveAndFinish() {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    /**
+     * Determines which item was selected
+     * @param item
+     * @return
+     */
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home){ //Go back to the main page when the ActionBar button is tapped
+            saveAndFinish();
+        }
+        return false;
+    }
+
+    /**
+     * Go back when the android back button is pressed
+     */
+    public void onBackPressed(){
+        saveAndFinish();
     }
 }
