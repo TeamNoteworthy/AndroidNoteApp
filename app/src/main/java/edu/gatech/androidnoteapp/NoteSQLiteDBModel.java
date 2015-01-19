@@ -1,5 +1,9 @@
 package edu.gatech.androidnoteapp;
 
+import android.content.Context;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 
 /**
@@ -7,18 +11,35 @@ import java.util.ArrayList;
  */
 public class NoteSQLiteDBModel implements NoteDBModel {
 
-    public ArrayList<Note> loadNotes() {
-        Note t1 = new Note();
-        t1.setTitle("abc");
-        Note t2 = new Note();
-        t2.setTitle("def");
-        Note t3 = new Note();
-        t3.setTitle("123");
-        ArrayList<Note> noteList = new ArrayList<Note>();
-        noteList.add(t1);
-        noteList.add(t2);
-        noteList.add(t3);
-        return noteList;
+    private static ArrayList<Note> notes = new ArrayList<Note>();
+    private SQLiteDatabase database;
+    private NoteSQLiteHelper dbHelper;
+
+    /**
+     * Standard constructor for the SQLiteModel, initializes the dbHelper variable so we can access the correct database
+     * @param context Android context (usually an activity)
+     */
+    public NoteSQLiteDBModel(Context context) {
+        dbHelper = new NoteSQLiteHelper(context);
+    }
+
+    /**
+     * Opens a SQL database for read/write
+     * @throws SQLException
+     */
+    public void open() throws SQLException {
+        database = dbHelper.getWritableDatabase();
+    }
+
+    /**
+     * Refreshes the (ArrayList<Note> notes) from the database
+     */
+    public void refreshNotes() {
+
+    }
+
+    public ArrayList<Note> getNotes() {
+        return notes;
     }
 
     public void saveNote(Note note) {

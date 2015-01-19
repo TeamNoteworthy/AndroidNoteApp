@@ -8,11 +8,15 @@ import java.util.ArrayList;
 public interface NoteDBModel {
 
     /**
-     * Loads all notes from the database into a list.
-     *
-     * @return A list of all notes from the database.
+     * Refreshes the notes ArrayList for later use with getNotes()
      */
-    public ArrayList<Note> loadNotes();
+    public void refreshNotes();
+
+
+    /**
+     * @return ArrayList of Notes from the Database
+     */
+    public ArrayList<Note> getNotes();
 
     /**
      * Saves a note to the database.
