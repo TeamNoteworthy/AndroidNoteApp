@@ -40,7 +40,7 @@ public class NoteListActivity extends ListActivity {
         setContentView(R.layout.activity_note_list);
 
         controller = new NoteDataController();
-        controller.setModel(new NoteSQLiteDBModel());
+        controller.setModel(new NoteSQLiteDBModel(this));
 
         refreshList();
 

@@ -15,7 +15,7 @@ public class NoteEditActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_edit);
-        getActionBar().setDisplayHomeAsUpEnabled(true); //Activates the actionbar button at the top
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Activates the actionbar button at the top
     }
 
     /**
@@ -28,7 +28,7 @@ public class NoteEditActivity extends ActionBarActivity {
 
     /**
      * Determines which item was selected
-     * @param item
+     * @param item the item which was selected
      * @return
      */
     public boolean onOptionsItemSelected(MenuItem item){

@@ -29,7 +29,7 @@ public class NoteDataController {
     }
 
     public ArrayList<Note> loadNotes() {
-        return dbModel.loadNotes();
+        return dbModel.getNotes();
     }
 
     public void saveNote(Note note) {
