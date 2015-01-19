@@ -7,5 +7,14 @@
     tools:context="edu.gatech.androidnoteapp.NoteEditActivity">
 
 
-
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="New Text"
+        android:id="@+id/noteText"
+        android:ems = "10"
+        android:singleLine="false"
+        android:gravity ="top"
+        android:inputType="textMultiLine"
+    />
 </RelativeLayout>
