@@ -22,6 +22,8 @@ public class NoteEditActivity extends ActionBarActivity {
      * Executed when we want to back to the main class. Still incomplete, saving to the database needs to be implemented
      */
     private void saveAndFinish() {
+        //TODO: save note, via controller.saveNote(note);
+        //need to get ref to controller here
         setResult(RESULT_OK);
         finish();
     }

@@ -42,13 +42,9 @@ public class NoteListActivity extends ListActivity {
         controller = new NoteDataController();
         controller.setModel(new NoteSQLiteDBModel(this));
 
-        refreshList();
+        setListAdapter(new NoteListAdapter(this, controller.loadNotes()));
 
         registerForContextMenu(getListView());
-    }
-
-    private void refreshList() {
-        setListAdapter(new NoteListAdapter(this, controller.loadNotes()));
     }
 
     /**
@@ -85,8 +81,7 @@ public class NoteListActivity extends ListActivity {
      * Creates a context menu when user long-presses a list item.
      */
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(0, DELETE_ID, 0, R.string.menu_deletenote);
     }
@@ -101,7 +96,6 @@ public class NoteListActivity extends ListActivity {
             case DELETE_ID:
                 AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
                 //controller.deleteNote(info.id);
-                refreshList();
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -135,6 +129,8 @@ public class NoteListActivity extends ListActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        refreshList();
+        //TODO: can safely remove this function, if we assume savenote also updates the arraylist
+        // that the NoteListAdapter is linked to in oncreate()
+        //refreshList();
     }
 }

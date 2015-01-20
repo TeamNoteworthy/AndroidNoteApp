@@ -54,10 +54,12 @@ public class NoteSQLiteDBModel implements NoteDBModel {
     }
 
     public void saveNote(Note note) {
-
+        //TODO: add (or overwrite) note in notes arraylist
+        //TODO: add (or overwrite) note in database
     }
 
     public void deleteNote(Note note) {
-
+        //TODO: delete note from notes arraylist
+        //TODO: delete note from database
     }
 }

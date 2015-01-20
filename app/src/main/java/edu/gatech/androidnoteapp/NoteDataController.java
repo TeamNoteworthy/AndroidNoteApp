@@ -24,6 +24,7 @@ public class NoteDataController {
     }
 
     public ArrayList<Note> loadNotes() {
+        dbModel.refreshNotes();
         return dbModel.getNotes();
     }
 
