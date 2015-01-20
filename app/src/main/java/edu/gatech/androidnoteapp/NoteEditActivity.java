@@ -54,6 +54,14 @@ public class NoteEditActivity extends ActionBarActivity {
             builder.setItems(colors, new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int which){
                     Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
+//                    switch(which){
+//                        case 0: // Red
+//                        case 1: // Green
+//                        case 2: // Blue
+//
+//                    }
+
+
                 }
             });
             AlertDialog alertDialog = builder.create();

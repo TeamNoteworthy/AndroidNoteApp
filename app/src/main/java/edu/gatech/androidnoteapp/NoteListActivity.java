@@ -107,6 +107,7 @@ public class NoteListActivity extends ListActivity {
      */
     private void createNote() {
         Intent i = new Intent(this, NoteEditActivity.class);
+        //i.putExtra("NoteID", ); NEED to pas
         startActivityForResult(i, ACTIVITY_CREATE);
     }
 
