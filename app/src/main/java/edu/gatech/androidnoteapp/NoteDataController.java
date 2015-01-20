@@ -8,11 +8,6 @@ import java.util.ArrayList;
 public class NoteDataController {
 
     /**
-     * The list of all saved notes.
-     */
-    private ArrayList<Note> notes;
-
-    /**
      * The database model that is being used to read and write notes.
      */
     private NoteDBModel dbModel;

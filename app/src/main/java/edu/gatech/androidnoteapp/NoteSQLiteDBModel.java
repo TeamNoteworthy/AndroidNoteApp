@@ -11,8 +11,19 @@ import java.util.ArrayList;
  */
 public class NoteSQLiteDBModel implements NoteDBModel {
 
+    /**
+     * List of notes, mirrored from database data.
+     */
     private static ArrayList<Note> notes = new ArrayList<Note>();
+
+    /**
+     * The authoritative database of notes.
+     */
     private SQLiteDatabase database;
+
+    /**
+     * Helper class to manage common database actions.
+     */
     private NoteSQLiteHelper dbHelper;
 
     /**
