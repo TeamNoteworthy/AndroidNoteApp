@@ -17,10 +17,8 @@ public class NoteDataController {
      *
      * @param newDBModel The new database model.
      */
-    public void setModel(NoteDBModel newDBModel)
-    {
+    public void setModel(NoteDBModel newDBModel) {
         dbModel = newDBModel;
-        //shuld reload too
     }
 
     public ArrayList<Note> loadNotes() {

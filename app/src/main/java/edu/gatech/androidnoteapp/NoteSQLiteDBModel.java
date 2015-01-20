@@ -14,7 +14,7 @@ public class NoteSQLiteDBModel implements NoteDBModel {
     /**
      * List of notes, mirrored from database data.
      */
-    private static ArrayList<Note> notes = new ArrayList<Note>();
+    private ArrayList<Note> notes = new ArrayList<Note>();
 
     /**
      * The authoritative database of notes.

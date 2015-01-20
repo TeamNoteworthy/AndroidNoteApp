@@ -33,7 +33,7 @@ public class NoteEditActivity extends ActionBarActivity {
      * @param item the item which was selected
      * @return
      */
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){ //Go back to the main page when the ActionBar button is tapped
             saveAndFinish();
         }
@@ -43,7 +43,7 @@ public class NoteEditActivity extends ActionBarActivity {
     /**
      * Go back when the android back button is pressed
      */
-    public void onBackPressed(){
+    public void onBackPressed() {
         saveAndFinish();
     }
 }

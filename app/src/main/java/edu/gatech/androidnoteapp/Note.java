@@ -37,62 +37,62 @@ public class Note {
     /**
      * Returns the ID of the note
      */
-    public int getID(){
+    public int getID() {
     	return noteID;
     }
     /**
      * Returns the Title of the note
      */
-    public String getTitle(){
+    public String getTitle() {
     	return titleText;
     }
     /**
      * Returns the Text of the note
      */
-    public String getText(){
+    public String getText() {
     	return bodyText;
     }
     /**
      * Returns the Date of the last edit to the note
      */
-    public Date getDate(){
+    public Date getDate() {
     	return lastEditDate;
     }
     /**
      * Returns the Color of the note
      */
-    public Color getColor(){
+    public Color getColor() {
     	return displayColor;
     }
     
     /**
      * Sets the ID of the note
      */
-    public void setID(int ID){
+    public void setID(int ID) {
     	noteID = ID;
     }
     /**
      * Sets the Title of the note
      */
-    public void setTitle(String title){
+    public void setTitle(String title) {
     	titleText = title;
     }
     /**
      * Sets the Text of the note
      */
-    public void setText(String body){
+    public void setText(String body) {
     	bodyText = body;
     }
     /**
      * Sets the Date of the last edit to the note
      */
-    public void setDate(Date newDate){
+    public void setDate(Date newDate) {
     	lastEditDate = newDate;
     }
     /**
      * Sets the Color of the note
      */
-    public void setColor(Color newColor){
+    public void setColor(Color newColor) {
     	displayColor = newColor;
     }
     
