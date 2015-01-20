@@ -7,10 +7,10 @@
     tools:context="edu.gatech.androidnoteapp.NoteEditActivity">
 
 
-    <TextView
+    <EditText
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="New Text"
+        android:text=""
         android:id="@+id/note_text"
         android:ems = "10"
         android:singleLine="false"
