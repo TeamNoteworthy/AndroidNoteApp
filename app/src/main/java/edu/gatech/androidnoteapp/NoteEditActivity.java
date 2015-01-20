@@ -50,24 +50,20 @@ public class NoteEditActivity extends ActionBarActivity {
         }
         if(id == R.id.action_notecolor){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Pick a color");
-            builder.setTitle("Color");
-            AlertDialog dialog = builder.create();
+            builder.setTitle("Pick a color");
+            builder.setItems(colors, new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
         return false;
     }
 
-    public Dialog onCreateDialog(Bundle savedInstanceState){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Pick a color");
-        builder.setItems(colors, new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
-            }
-        });
 
-        return builder.create();
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
