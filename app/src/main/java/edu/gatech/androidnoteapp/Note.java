@@ -12,7 +12,7 @@ public class Note {
     /**
      * A unique id for this note.
      */
-    private int noteID;
+    private long noteID;
 
     /**
      * The title of the note.
@@ -33,11 +33,19 @@ public class Note {
      * The color the note should render with.
      */
     private Color displayColor;
-    
+
+    public Note(long id, String title, String body, Date date, Color color) {
+        this.noteID = id;
+        this.titleText = title;
+        this.bodyText = body;
+        this.lastEditDate = date;
+        this.displayColor = color;
+    }
+
     /**
      * Returns the ID of the note
      */
-    public int getID() {
+    public long getID() {
     	return noteID;
     }
     /**
