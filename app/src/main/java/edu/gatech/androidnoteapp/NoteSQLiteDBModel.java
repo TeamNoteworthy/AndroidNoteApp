@@ -64,6 +64,11 @@ public class NoteSQLiteDBModel implements NoteDBModel {
 
         notes.clear(); //remove all previous note objects from the ArrayList for now
         Cursor cursor = database.query(NoteSQLiteHelper.TABLE_NOTES, allColumns, null, null, null, null, null); //SQL Query for all rows of the database
+        
+        if(cursor == null) {
+            System.out.println("Cursor is null!");
+            return;
+        }
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()) { //go through all rows
@@ -113,6 +118,10 @@ public class NoteSQLiteDBModel implements NoteDBModel {
         long insertID = database.insert(NoteSQLiteHelper.TABLE_NOTES, null, values);
 
         Cursor cursor = database.query(NoteSQLiteHelper.TABLE_NOTES, allColumns, NoteSQLiteHelper.COLUMN_ID + " = " + insertID, null, null, null, null);
+        if(cursor == null) {
+            System.out.println("Cursor is null!");
+            return;
+        }
         cursor.moveToFirst();
 
         Note temp = cursorToNote(cursor);
