@@ -37,10 +37,10 @@ public class NoteSQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE =
             "CREATE TABLE " + TABLE_NOTES
             + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_TITLE + " VARCHAR NOT NULL, "
+                + COLUMN_TITLE + " TEXT NOT NULL, "
                 + COLUMN_TEXT  + " TEXT, "
-                + COLUMN_DATE  + " TIMESTAMP NOT NULL, "
-                + COLUMN_COLOR + " INTEGER NOT NULL)";
+                + COLUMN_DATE  + " TEXT, "
+                + COLUMN_COLOR + " TEXT)";
 
     public NoteSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
