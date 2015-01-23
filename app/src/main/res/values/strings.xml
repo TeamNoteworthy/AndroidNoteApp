@@ -6,6 +6,8 @@
     <string name="title_activity_note_list">Noteworthy</string>
     <string name="action_addnote">Add Note</string>
     <string name="menu_deletenote">Delete Note</string>
+    <string name="menu_deletenote_yes">Yes</string>
+    <string name="menu_deletenote_no">No</string>
 
 
 </resources>

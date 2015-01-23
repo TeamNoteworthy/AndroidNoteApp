@@ -44,12 +44,13 @@ public class NoteEditActivity extends ActionBarActivity {
      * @return
      */
     public boolean onOptionsItemSelected(MenuItem item) {
+        AlertDialog.Builder builder;
         int id = item.getItemId();
         if (id == android.R.id.home) { //Go back to the main page when the ActionBar button is tapped
             saveAndFinish();
         }
         if(id == R.id.action_notecolor){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder = new AlertDialog.Builder(this);
             builder.setTitle("Pick a color");
             builder.setItems(colors, new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int which){
@@ -66,6 +67,20 @@ public class NoteEditActivity extends ActionBarActivity {
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+        }
+        if(id == R.id.action_deletenote) {
+            builder = new AlertDialog.Builder(this);
+            builder.setTitle("Are You Sure?");
+            builder.setNegativeButton(R.string.menu_deletenote_no, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked the No Button (Does not delete note)
+                }
+            });
+            builder.setPositiveButton(R.string.menu_deletenote_yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked the Yes Button (Deletes note)
+                }
+            });
         }
         return false;
     }
