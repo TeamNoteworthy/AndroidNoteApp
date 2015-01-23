@@ -46,7 +46,9 @@ public class NoteSQLiteDBModel implements NoteDBModel {
      * @param context Android context (usually an activity)
      */
     public NoteSQLiteDBModel(Context context) {
+
         dbHelper = new NoteSQLiteHelper(context);
+        open();
     }
 
     /**
