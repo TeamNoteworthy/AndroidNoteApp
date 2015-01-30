@@ -132,6 +132,6 @@ public class NoteListActivity extends ListActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         //TODO: can safely remove this function, if we assume savenote also updates the arraylist
         // that the NoteListAdapter is linked to in oncreate()
-        //refreshList();
+        controller.loadNotes();
     }
 }
