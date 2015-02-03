@@ -32,9 +32,9 @@ public class Note {
     /**
      * The color the note should render with.
      */
-    private Color displayColor;
+    private int displayColor;
 
-    public Note(long id, String title, String body, Date date, Color color) {
+    public Note(long id, String title, String body, Date date, int color) {
         this.noteID = id;
         this.titleText = title;
         this.bodyText = body;
@@ -69,7 +69,7 @@ public class Note {
     /**
      * Returns the Color of the note
      */
-    public Color getColor() {
+    public int getColor() {
     	return displayColor;
     }
     
@@ -100,7 +100,7 @@ public class Note {
     /**
      * Sets the Color of the note
      */
-    public void setColor(Color newColor) {
+    public void setColor(int newColor) {
     	displayColor = newColor;
     }
     

@@ -121,7 +121,7 @@ public class NoteSQLiteDBModel implements NoteDBModel {
             noteDate = new java.sql.Date(0);
         }
 
-        Note temp = new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2), noteDate, new Color());
+        Note temp = new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2), noteDate, Color.WHITE);
         return temp;
     }
 
@@ -134,7 +134,7 @@ public class NoteSQLiteDBModel implements NoteDBModel {
         values.put(NoteSQLiteHelper.COLUMN_TITLE, note.getTitle());
         values.put(NoteSQLiteHelper.COLUMN_TEXT, note.getText());
         values.put(NoteSQLiteHelper.COLUMN_DATE, note.getDate().toString());
-        values.put(NoteSQLiteHelper.COLUMN_COLOR, note.getColor().toString());
+        values.put(NoteSQLiteHelper.COLUMN_COLOR, note.getColor());
 
         long insertID = database.insert(NoteSQLiteHelper.TABLE_NOTES, null, values);
 
@@ -159,7 +159,7 @@ public class NoteSQLiteDBModel implements NoteDBModel {
         values.put(NoteSQLiteHelper.COLUMN_TITLE, note.getTitle());
         values.put(NoteSQLiteHelper.COLUMN_TEXT, note.getText());
         values.put(NoteSQLiteHelper.COLUMN_DATE, note.getDate().toString());
-        values.put(NoteSQLiteHelper.COLUMN_COLOR, note.getColor().toString());
+        values.put(NoteSQLiteHelper.COLUMN_COLOR, note.getColor());
 
         database.update(NoteSQLiteHelper.TABLE_NOTES, values, NoteSQLiteHelper.COLUMN_ID + " = ?", new String[] {String.valueOf(note.getID())});
 

@@ -65,7 +65,7 @@ public class NoteEditActivity extends ActionBarActivity {
             controller.saveNote(note);
         }
         else {
-            Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), new Color());
+            Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), Color.WHITE);
             controller.createNote(newNote);
         }
 
@@ -90,17 +90,20 @@ public class NoteEditActivity extends ActionBarActivity {
             builder.setTitle("Pick a color");
             builder.setItems(colors, new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int which){
-                    Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_SHORT).show();
                     switch(which){
                         case 0: // Red
+                            //note.setColor(Color.RED);
                             EditLayout.setBackgroundColor(Color.RED);
-                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_SHORT).show();
                         case 1: // Green
+                            //note.setColor(Color.GREEN);
                             EditLayout.setBackgroundColor(Color.GREEN);
-                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_SHORT).show();
                         case 2: // Blue
+                            //note.setColor(Color.BLUE);
                             EditLayout.setBackgroundColor(Color.BLUE);
-                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_SHORT).show();
 
                     }
 
