@@ -126,7 +126,7 @@ public class NoteListActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
         Intent i = new Intent(this, NoteEditActivity.class);
         i.putExtra(NoteEditActivity.KEY_NOTEEXISTS, true);
-        i.putExtra(NoteEditActivity.KEY_NOTEID, l.getAdapter().getItemId((int)id - 1));
+        i.putExtra(NoteEditActivity.KEY_NOTEID, l.getAdapter().getItemId(position));
         startActivityForResult(i, ACTIVITY_EDIT);
     }
 

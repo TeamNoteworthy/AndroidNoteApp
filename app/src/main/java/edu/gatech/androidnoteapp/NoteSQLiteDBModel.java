@@ -121,7 +121,7 @@ public class NoteSQLiteDBModel implements NoteDBModel {
             noteDate = new java.sql.Date(0);
         }
 
-        Note temp = new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2), noteDate, Color.WHITE);
+        Note temp = new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2), noteDate, cursor.getString(4));
         return temp;
     }
 
