@@ -108,6 +108,10 @@ public class NoteSQLiteDBModel implements NoteDBModel {
         return notes;
     }
 
+    public void restartDB() {
+        dbHelper.onUpgrade(database, 1, 2);
+    }
+
     /**
      * Private helper function to convert an Android SQLite Cursor into an actual Java Note Object
      * @param cursor SQLite cursor pointed at a database
