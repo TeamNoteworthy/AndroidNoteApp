@@ -57,7 +57,9 @@ public class NoteEditActivity extends ActionBarActivity {
     private void saveAndFinish() {
         String title = titleText.getText().toString();
         String body = bodyText.getText().toString();
-
+        if(title.length() == 0 && body.length()==0){
+            controller.deleteNote(note);
+        }
         if (noteExists && note != null) {
             note.setTitle(title);
             note.setText(body);
@@ -90,20 +92,19 @@ public class NoteEditActivity extends ActionBarActivity {
             builder.setTitle("Pick a color");
             builder.setItems(colors, new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int which){
-                    Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_SHORT).show();
                     switch(which){
                         case 0: // Red
                             //note.setColor(Color.RED);
                             EditLayout.setBackgroundColor(Color.RED);
-                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_SHORT).show();
+                            break;
                         case 1: // Green
                             //note.setColor(Color.GREEN);
                             EditLayout.setBackgroundColor(Color.GREEN);
-                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_SHORT).show();
+                            break;
                         case 2: // Blue
                             //note.setColor(Color.BLUE);
                             EditLayout.setBackgroundColor(Color.BLUE);
-                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_SHORT).show();
+                            break;
 
                     }
 
