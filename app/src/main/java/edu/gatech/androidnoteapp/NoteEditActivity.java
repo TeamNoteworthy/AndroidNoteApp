@@ -19,9 +19,15 @@ import java.sql.Date;
  */
 public class NoteEditActivity extends ActionBarActivity {
 
+    public static final String KEY_NOTEEXISTS = "noteexists";
+    public static final String KEY_NOTEID = "noteid";
+
     EditText bodyText, titleText;
     String[] colors = {"Red", "Green","Blue"};
-    private NoteDataController controller = new NoteDataController();
+    private NoteDataController controller = NoteListActivity.controller;
+    private boolean noteExists;
+    private Note note;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +35,17 @@ public class NoteEditActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Activates the actionbar button at the top
         titleText = (EditText) findViewById(R.id.note_title);
         bodyText = (EditText) findViewById(R.id.note_text);
-        controller.setModel(new NoteSQLiteDBModel(this));
 
+        Bundle extras = getIntent().getExtras();
+        noteExists = extras.getBoolean(NoteEditActivity.KEY_NOTEEXISTS);
+        if (noteExists) {
+            note = controller.getNoteByID(extras.getLong(NoteEditActivity.KEY_NOTEID));
+
+            if (note != null) {
+                titleText.setText(note.getTitle());
+                bodyText.setText(note.getText());
+            }
+        }
     }
 
     /**
@@ -39,10 +54,18 @@ public class NoteEditActivity extends ActionBarActivity {
     private void saveAndFinish() {
         String title = titleText.getText().toString();
         String body = bodyText.getText().toString();
-        Note newNote = new Note(0, title, body,  new Date(System.currentTimeMillis()), new Color() );
-        //TODO: save note, via controller.saveNote(note);
-        controller.saveNote(newNote);
-        //need to get ref to controller here
+
+        if (noteExists && note != null) {
+            note.setTitle(title);
+            note.setText(body);
+            note.setDate(new Date(System.currentTimeMillis()));
+            controller.saveNote(note);
+        }
+        else {
+            Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), new Color());
+            controller.createNote(newNote);
+        }
+
         setResult(RESULT_OK);
         finish();
     }

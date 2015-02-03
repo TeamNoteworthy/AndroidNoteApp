@@ -28,7 +28,8 @@ public class NoteListActivity extends ListActivity {
     /**
      * The controller that manages note data.
      */
-    private NoteDataController controller;
+    public static final NoteDataController controller = new NoteDataController();
+    public NoteListAdapter adapter;
 
     /**
      * Called when activity opens.
@@ -39,10 +40,14 @@ public class NoteListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
 
-        controller = new NoteDataController();
-        controller.setModel(new NoteSQLiteDBModel(this));
+        NoteSQLiteDBModel dbModel = new NoteSQLiteDBModel(this);
+        controller.setModel(dbModel);
 
-        setListAdapter(new NoteListAdapter(this, controller.loadNotes()));
+        adapter = new NoteListAdapter(this, controller.getNotes());
+        dbModel.setAdapter(adapter);
+        setListAdapter(adapter);
+
+        controller.refreshNotes();
 
         registerForContextMenu(getListView());
     }
@@ -95,7 +100,7 @@ public class NoteListActivity extends ListActivity {
         switch(item.getItemId()) {
             case DELETE_ID:
                 AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-                //controller.deleteNote(info.id);
+                controller.deleteNote(controller.getNoteByID(info.id));
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -107,6 +112,7 @@ public class NoteListActivity extends ListActivity {
      */
     private void createNote() {
         Intent i = new Intent(this, NoteEditActivity.class);
+        i.putExtra(NoteEditActivity.KEY_NOTEEXISTS, false);
         //i.putExtra("NoteID", ); NEED to pas
         startActivityForResult(i, ACTIVITY_CREATE);
     }
@@ -119,7 +125,8 @@ public class NoteListActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent i = new Intent(this, NoteEditActivity.class);
-        //i.putExtra(NotesDbAdapter.KEY_ROWID, id);
+        i.putExtra(NoteEditActivity.KEY_NOTEEXISTS, true);
+        i.putExtra(NoteEditActivity.KEY_NOTEID, l.getAdapter().getItemId((int)id - 1));
         startActivityForResult(i, ACTIVITY_EDIT);
     }
 
@@ -132,6 +139,6 @@ public class NoteListActivity extends ListActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         //TODO: can safely remove this function, if we assume savenote also updates the arraylist
         // that the NoteListAdapter is linked to in oncreate()
-        controller.loadNotes();
+        controller.refreshNotes();
     }
 }

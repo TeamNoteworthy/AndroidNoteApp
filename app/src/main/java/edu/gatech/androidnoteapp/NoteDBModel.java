@@ -19,6 +19,13 @@ public interface NoteDBModel {
     public ArrayList<Note> getNotes();
 
     /**
+     * Saves a new note to the database.
+     *
+     * @param note The note to create.
+     */
+    public void createNote(Note note);
+
+    /**
      * Saves a note to the database.
      * Will overwrite notes with the same ID.
      *
@@ -32,4 +39,12 @@ public interface NoteDBModel {
      * @param note The note to delete.
      */
     public void deleteNote(Note note);
+
+    /**
+     * Tries to find a note with the given id.
+     *
+     * @param id The id to look up.
+     * @return The note with the given id, else null
+     */
+    public Note getNoteByID(long id);
 }
