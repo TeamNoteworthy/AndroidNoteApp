@@ -42,8 +42,14 @@ public class NoteListActivity extends ListActivity {
 
         NoteSQLiteDBModel dbModel = new NoteSQLiteDBModel(this);
         controller.setModel(dbModel);
-
+        
+        
+        //-================================================-
+        //Uncomment this to reset your local database!
+        
         //dbModel.restartDB();
+        
+        //-================================================-
 
         controller.refreshNotes();
 
