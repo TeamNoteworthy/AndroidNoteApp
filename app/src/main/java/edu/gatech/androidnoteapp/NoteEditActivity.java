@@ -23,6 +23,9 @@ public class NoteEditActivity extends ActionBarActivity {
     public static final String KEY_NOTEEXISTS = "noteexists";
     public static final String KEY_NOTEID = "noteid";
     public RelativeLayout EditLayout = null;
+    private String customRed = "#FF6666";
+    private String customGreen = "#4DDB4D";
+    private String customBlue = "#19A3FF";
 
     EditText bodyText, titleText;
     String[] colors = {"Red", "Green","Blue"};
@@ -57,19 +60,27 @@ public class NoteEditActivity extends ActionBarActivity {
     private void saveAndFinish() {
         String title = titleText.getText().toString();
         String body = bodyText.getText().toString();
-        if(title.length() == 0 && body.length()==0){
-            controller.deleteNote(note);
-        }
         if (noteExists && note != null) {
-            note.setTitle(title);
-            note.setText(body);
-            note.setDate(new Date(System.currentTimeMillis()));
-            controller.saveNote(note);
+            if(title.length() == 0 && body.length()==0){
+                controller.deleteNote(note);
+            }
+            else {
+                note.setTitle(title);
+                note.setText(body);
+                note.setDate(new Date(System.currentTimeMillis()));
+                controller.saveNote(note);
+            }
+        }
+        else if(title.length() == 0 && body.length() == 0) {
+            //if note doesn't exist and nothing in title or body, then don't save it and just return to the note list
+            setResult(RESULT_OK);
+            finish();
         }
         else {
-            Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), Color.WHITE);
-            controller.createNote(newNote);
-        }
+             Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), Color.WHITE);
+             controller.createNote(newNote);
+            }
+
 
         setResult(RESULT_OK);
         finish();
@@ -95,15 +106,15 @@ public class NoteEditActivity extends ActionBarActivity {
                     switch(which){
                         case 0: // Red
                             //note.setColor(Color.RED);
-                            EditLayout.setBackgroundColor(Color.RED);
+                            EditLayout.setBackgroundColor(Color.parseColor(customRed));
                             break;
                         case 1: // Green
                             //note.setColor(Color.GREEN);
-                            EditLayout.setBackgroundColor(Color.GREEN);
+                            EditLayout.setBackgroundColor(Color.parseColor(customGreen));
                             break;
                         case 2: // Blue
                             //note.setColor(Color.BLUE);
-                            EditLayout.setBackgroundColor(Color.BLUE);
+                            EditLayout.setBackgroundColor(Color.parseColor(customBlue));
                             break;
 
                     }
@@ -121,7 +132,7 @@ public class NoteEditActivity extends ActionBarActivity {
                 public void onClick(DialogInterface dialog, int id) {
                     // User clicked the Yes Button (Deletes Note)
                     // The note is not saved
-                    if(noteExists && note != null){
+                    if (noteExists && note != null) {
                         controller.deleteNote(note);
                     }
                     setResult(RESULT_OK);
@@ -131,7 +142,7 @@ public class NoteEditActivity extends ActionBarActivity {
             builder.setPositiveButton(R.string.menu_deletenote_no, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     // User clicked the No Button
-                    // Nothing happen and returns to edit screen
+                    // Nothing happens and returns to edit screen
 
                 }
             });
