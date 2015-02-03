@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.sql.Date;
@@ -21,6 +22,7 @@ public class NoteEditActivity extends ActionBarActivity {
 
     public static final String KEY_NOTEEXISTS = "noteexists";
     public static final String KEY_NOTEID = "noteid";
+    public RelativeLayout EditLayout = null;
 
     EditText bodyText, titleText;
     String[] colors = {"Red", "Green","Blue"};
@@ -35,6 +37,7 @@ public class NoteEditActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Activates the actionbar button at the top
         titleText = (EditText) findViewById(R.id.note_title);
         bodyText = (EditText) findViewById(R.id.note_text);
+        EditLayout = (RelativeLayout)findViewById(R.id.EditLayout);
 
         Bundle extras = getIntent().getExtras();
         noteExists = extras.getBoolean(NoteEditActivity.KEY_NOTEEXISTS);
@@ -88,12 +91,18 @@ public class NoteEditActivity extends ActionBarActivity {
             builder.setItems(colors, new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int which){
                     Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
-//                    switch(which){
-//                        case 0: // Red
-//                        case 1: // Green
-//                        case 2: // Blue
-//
-//                    }
+                    switch(which){
+                        case 0: // Red
+                            EditLayout.setBackgroundColor(Color.RED);
+                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_LONG).show();
+                        case 1: // Green
+                            EditLayout.setBackgroundColor(Color.GREEN);
+                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_LONG).show();
+                        case 2: // Blue
+                            EditLayout.setBackgroundColor(Color.BLUE);
+                            Toast.makeText(getApplicationContext(), ""+which, Toast.LENGTH_LONG).show();
+
+                    }
 
 
                 }
@@ -104,16 +113,26 @@ public class NoteEditActivity extends ActionBarActivity {
         if(id == R.id.action_deletenote) {
             builder = new AlertDialog.Builder(this);
             builder.setTitle("Are You Sure?");
-            builder.setNegativeButton(R.string.menu_deletenote_no, new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.menu_deletenote_yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User clicked the No Button (Does not delete note)
+                    // User clicked the Yes Button (Deletes Note)
+                    // The note is not saved
+                    if(noteExists && note != null){
+                        controller.deleteNote(note);
+                    }
+                    setResult(RESULT_OK);
+                    finish();
                 }
             });
-            builder.setPositiveButton(R.string.menu_deletenote_yes, new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(R.string.menu_deletenote_no, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User clicked the Yes Button (Deletes note)
+                    // User clicked the No Button
+                    // Nothing happen and returns to edit screen
+
                 }
             });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
         return false;
     }
