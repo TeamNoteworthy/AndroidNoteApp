@@ -108,6 +108,10 @@ public class NoteSQLiteDBModel implements NoteDBModel {
         return notes;
     }
 
+    public void restartDB() {
+        dbHelper.onUpgrade(database, 1, 2);
+    }
+
     /**
      * Private helper function to convert an Android SQLite Cursor into an actual Java Note Object
      * @param cursor SQLite cursor pointed at a database
@@ -121,7 +125,7 @@ public class NoteSQLiteDBModel implements NoteDBModel {
             noteDate = new java.sql.Date(0);
         }
 
-        Note temp = new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2), noteDate, Color.WHITE);
+        Note temp = new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2), noteDate, cursor.getString(4));
         return temp;
     }
 

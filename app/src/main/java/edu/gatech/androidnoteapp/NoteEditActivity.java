@@ -26,6 +26,7 @@ public class NoteEditActivity extends ActionBarActivity {
     private String customRed = "#FF6666";
     private String customGreen = "#4DDB4D";
     private String customBlue = "#19A3FF";
+    private String currentColor;
 
     EditText bodyText, titleText;
     String[] colors = {"Red", "Green","Blue"};
@@ -42,6 +43,7 @@ public class NoteEditActivity extends ActionBarActivity {
         bodyText = (EditText) findViewById(R.id.note_text);
         EditLayout = (RelativeLayout)findViewById(R.id.EditLayout);
 
+
         Bundle extras = getIntent().getExtras();
         noteExists = extras.getBoolean(NoteEditActivity.KEY_NOTEEXISTS);
         if (noteExists) {
@@ -50,6 +52,14 @@ public class NoteEditActivity extends ActionBarActivity {
             if (note != null) {
                 titleText.setText(note.getTitle());
                 bodyText.setText(note.getText());
+
+                currentColor = note.getColor();
+                if(currentColor == null) {
+                    currentColor = "#FFFFFF";
+                }
+
+
+                EditLayout.setBackgroundColor(Color.parseColor(currentColor));
             }
         }
     }
@@ -68,6 +78,11 @@ public class NoteEditActivity extends ActionBarActivity {
                 note.setTitle(title);
                 note.setText(body);
                 note.setDate(new Date(System.currentTimeMillis()));
+                if(currentColor != null) {
+                    note.setColor(currentColor);
+                } else {
+                    note.setColor("#FFFFFF"); //default white
+                }
                 controller.saveNote(note);
             }
         }
@@ -77,7 +92,7 @@ public class NoteEditActivity extends ActionBarActivity {
             finish();
         }
         else {
-             Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), Color.WHITE);
+             Note newNote = new Note(0, title, body, new Date(System.currentTimeMillis()), currentColor);
              controller.createNote(newNote);
             }
 
@@ -107,14 +122,17 @@ public class NoteEditActivity extends ActionBarActivity {
                         case 0: // Red
                             //note.setColor(Color.RED);
                             EditLayout.setBackgroundColor(Color.parseColor(customRed));
+                            currentColor = customRed;
                             break;
                         case 1: // Green
                             //note.setColor(Color.GREEN);
                             EditLayout.setBackgroundColor(Color.parseColor(customGreen));
+                            currentColor = customGreen;
                             break;
                         case 2: // Blue
                             //note.setColor(Color.BLUE);
                             EditLayout.setBackgroundColor(Color.parseColor(customBlue));
+                            currentColor = customBlue;
                             break;
 
                     }

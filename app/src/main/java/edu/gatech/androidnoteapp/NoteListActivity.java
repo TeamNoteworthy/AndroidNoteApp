@@ -43,11 +43,14 @@ public class NoteListActivity extends ListActivity {
         NoteSQLiteDBModel dbModel = new NoteSQLiteDBModel(this);
         controller.setModel(dbModel);
 
+        dbModel.restartDB();
+
+        controller.refreshNotes();
+
         adapter = new NoteListAdapter(this, controller.getNotes());
         dbModel.setAdapter(adapter);
         setListAdapter(adapter);
 
-        controller.refreshNotes();
 
         registerForContextMenu(getListView());
     }
