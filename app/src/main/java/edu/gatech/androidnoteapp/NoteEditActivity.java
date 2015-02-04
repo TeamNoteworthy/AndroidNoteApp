@@ -26,9 +26,10 @@ public class NoteEditActivity extends ActionBarActivity {
     private String customRed = "#FF6666";
     private String customGreen = "#4DDB4D";
     private String customBlue = "#19A3FF";
+    private String customYellow = "#FFFACD";
 
     EditText bodyText, titleText;
-    String[] colors = {"Red", "Green","Blue"};
+    String[] colors = {"Red", "Green","Blue","Yellow"};
     private NoteDataController controller = NoteListActivity.controller;
     private boolean noteExists;
     private Note note;
@@ -118,6 +119,10 @@ public class NoteEditActivity extends ActionBarActivity {
                         case 2: // Blue
                             note.setColor(customBlue);
                             EditLayout.setBackgroundColor(Color.parseColor(customBlue));
+                            break;
+                        case 3: // Yellow
+                            note.setColor(customYellow);
+                            EditLayout.setBackgroundColor(Color.parseColor(customYellow));
                             break;
 
                     }
