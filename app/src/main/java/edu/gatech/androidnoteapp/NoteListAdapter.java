@@ -74,7 +74,7 @@ public class NoteListAdapter extends BaseAdapter {
             viewElements = new RowViewElements();
             viewElements.title = (TextView)view.findViewById(R.id.note_title);
             viewElements.date = (TextView)view.findViewById(R.id.note_date);
-            viewElements.layout = (LinearLayout)view.findViewById(R.id.row_layout);
+            viewElements.layout = (LinearLayout)view.findViewById(R.id.full_row);
             view.setTag(viewElements);
         } else {
             // If there is an existing view,
@@ -114,9 +114,7 @@ public class NoteListAdapter extends BaseAdapter {
         /**
          * @param color String color of the note
          */
-        public void setBackgroundColor(String color){
-            this.layout.setBackgroundColor(Color.parseColor(color));
-        }
+        public void setBackgroundColor(String color){ this.layout.setBackgroundColor(Color.parseColor(color)); }
 
         /**
          * @return Title for this RowViewElement

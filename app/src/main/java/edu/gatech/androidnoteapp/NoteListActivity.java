@@ -126,6 +126,7 @@ public class NoteListActivity extends ListActivity {
         i.putExtra(NoteEditActivity.KEY_NOTEEXISTS, false);
         //i.putExtra("NoteID", ); NEED to pas
         startActivityForResult(i, ACTIVITY_CREATE);
+
     }
 
     /**
