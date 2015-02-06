@@ -1,10 +1,12 @@
 package edu.gatech.androidnoteapp;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.sql.Date;
@@ -72,6 +74,7 @@ public class NoteListAdapter extends BaseAdapter {
             viewElements = new RowViewElements();
             viewElements.title = (TextView)view.findViewById(R.id.note_title);
             viewElements.date = (TextView)view.findViewById(R.id.note_date);
+            viewElements.layout = (LinearLayout)view.findViewById(R.id.row_layout);
             view.setTag(viewElements);
         } else {
             // If there is an existing view,
@@ -84,6 +87,7 @@ public class NoteListAdapter extends BaseAdapter {
         Note note = getItem(position);
         viewElements.setTitle(note.getTitle());
         viewElements.setDate(note.getDate());
+        viewElements.setBackgroundColor(note.getColor());
 
         return view;
     }
@@ -94,6 +98,10 @@ public class NoteListAdapter extends BaseAdapter {
      */
     private class RowViewElements {
         /**
+         * The encompassing layout for the entire row
+         */
+        private LinearLayout layout;
+        /**
          * The TextView for the title for the returned row for the given note
          */
         private TextView title;
@@ -102,6 +110,13 @@ public class NoteListAdapter extends BaseAdapter {
          * given note
          */
         private TextView date;
+
+        /**
+         * @param color String color of the note
+         */
+        public void setBackgroundColor(String color){
+            this.layout.setBackgroundColor(Color.parseColor(color));
+        }
 
         /**
          * @return Title for this RowViewElement

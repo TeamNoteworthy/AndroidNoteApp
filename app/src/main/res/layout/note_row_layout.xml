@@ -5,6 +5,7 @@
     android:layout_height="64dip">
 
     <LinearLayout
+        android:id="@+id/row_layout"
         android:orientation="vertical"
         android:paddingRight="8dip"
         android:paddingLeft="16dip"
