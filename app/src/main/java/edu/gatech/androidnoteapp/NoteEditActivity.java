@@ -39,10 +39,11 @@ public class NoteEditActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_edit);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Activates the actionbar button at the top
+        // Get each item from the layout
         titleText = (EditText) findViewById(R.id.note_title);
         bodyText = (EditText) findViewById(R.id.note_text);
         EditLayout = (RelativeLayout)findViewById(R.id.EditLayout);
-
+        // Determines if the note already exists or a new empty edit screen must be generated
         Bundle extras = getIntent().getExtras();
         noteExists = extras.getBoolean(NoteEditActivity.KEY_NOTEEXISTS);
         if (noteExists) {
@@ -51,14 +52,14 @@ public class NoteEditActivity extends ActionBarActivity {
         else {
             note = new Note(0, "", "", new Date(System.currentTimeMillis()), "#FFFFFF");
         }
-
+        // Sets the title, body text, and background color of the note from note data in SQL Lite Database
         titleText.setText(note.getTitle());
         bodyText.setText(note.getText());
         EditLayout.setBackgroundColor(Color.parseColor(note.getColor()));
     }
 
     /**
-     * Executed when we want to back to the main class. Still incomplete, saving to the database needs to be implemented
+     * Saves the note in the database if the user hits the back button
      */
     private void saveAndFinish() {
         String title = titleText.getText().toString();
@@ -84,8 +85,7 @@ public class NoteEditActivity extends ActionBarActivity {
         else {
              controller.createNote(note);
         }
-
-
+        // Closes out of the edit activity
         setResult(RESULT_OK);
         finish();
     }
@@ -103,6 +103,7 @@ public class NoteEditActivity extends ActionBarActivity {
             saveAndFinish();
         }
         if(id == R.id.action_notecolor){
+            // Creates a popup screen that allows the user to choose a color
             builder = new AlertDialog.Builder(this);
             builder.setTitle("Pick a color");
             builder.setItems(colors, new DialogInterface.OnClickListener(){
@@ -124,10 +125,7 @@ public class NoteEditActivity extends ActionBarActivity {
                             note.setColor(customYellow);
                             EditLayout.setBackgroundColor(Color.parseColor(customYellow));
                             break;
-
                     }
-
-
                 }
             });
             AlertDialog alertDialog = builder.create();
@@ -154,6 +152,7 @@ public class NoteEditActivity extends ActionBarActivity {
 
                 }
             });
+            // Shows the "are you sure" dialog box
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         }
