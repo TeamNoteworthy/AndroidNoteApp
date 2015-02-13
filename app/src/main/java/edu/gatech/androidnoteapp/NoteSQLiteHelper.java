@@ -41,16 +41,27 @@ public class NoteSQLiteHelper extends SQLiteOpenHelper {
                 + COLUMN_TEXT  + " TEXT, "
                 + COLUMN_DATE  + " TEXT, "
                 + COLUMN_COLOR + " TEXT)";
-
+    
+    /**
+     * Calls the constructor for a context-sensitive SQLite database
+     **/
     public NoteSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * Calls the simple CREATE TABLE... code to actually initialize the database
+     **/
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
     }
-
+    
+    /**
+     * An onUpgrade function required to make this work properly.
+     * Version isn't stored anywhere internally or anything, so it's basically just a dummy variable
+     * used to flush the entire database table on demand.
+     **/
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w("SQLiteDBUpgrade", "Upgrading database");
