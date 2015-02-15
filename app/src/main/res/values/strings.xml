@@ -8,5 +8,7 @@
     <string name="menu_deletenote">Delete Note</string>
     <string name="menu_deletenote_yes">Yes</string>
     <string name="menu_deletenote_no">No</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

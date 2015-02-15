@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.gatech.androidnoteapp.NoteEditActivity">
+    <item android:id="@+id/action_notecolor" android:title="Color"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_deletenote" android:title="Delete Note"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>
