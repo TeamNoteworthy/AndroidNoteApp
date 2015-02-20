@@ -142,15 +142,6 @@ public class NoteSQLiteDBModel implements NoteDBModel {
 
         long insertID = database.insert(NoteSQLiteHelper.TABLE_NOTES, null, values);
 
-        Cursor cursor = database.query(NoteSQLiteHelper.TABLE_NOTES, allColumns, NoteSQLiteHelper.COLUMN_ID + " = " + insertID, null, null, null, null);
-        if(cursor == null) {
-            System.out.println("Cursor is null!");
-            return;
-        }
-        cursor.moveToFirst();
-
-        Note temp = cursorToNote(cursor);
-        cursor.close();
         refreshNotes();
     }
 
