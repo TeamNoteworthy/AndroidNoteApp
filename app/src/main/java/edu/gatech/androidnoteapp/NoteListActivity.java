@@ -25,7 +25,7 @@ public class NoteListActivity extends ListActivity {
     /**
      * The controller that manages note data.
      */
-    public static final NoteDataController controller = new NoteDataController();
+    public static NoteDBModel dbModel;
     public NoteListAdapter adapter;
 	
     @Override
@@ -33,12 +33,11 @@ public class NoteListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
 
-        NoteSQLiteDBModel dbModel = new NoteSQLiteDBModel(this);
-        controller.setModel(dbModel);
+        dbModel = new NoteSQLiteDBModel(this);
 
-        controller.refreshNotes();
+        dbModel.refreshNotes();
 
-        adapter = new NoteListAdapter(this, controller.getNotes());
+        adapter = new NoteListAdapter(this, dbModel.getNotes());
         dbModel.setAdapter(adapter);
         setListAdapter(adapter);
 
@@ -93,7 +92,7 @@ public class NoteListActivity extends ListActivity {
         switch(item.getItemId()) {
             case DELETE_ID:
                 AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-                controller.deleteNote(controller.getNoteByID(info.id));
+                dbModel.deleteNote(dbModel.getNoteByID(info.id));
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -124,6 +123,6 @@ public class NoteListActivity extends ListActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        controller.refreshNotes();
+        dbModel.refreshNotes();
     }
 }
