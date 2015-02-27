@@ -30,7 +30,7 @@ public class NoteEditActivity extends ActionBarActivity {
 
     EditText bodyText, titleText;
     String[] colors = {"Red", "Green","Blue","Yellow"};
-    private NoteDataController controller = NoteListActivity.controller;
+    private NoteDBModel dbModel = NoteListActivity.dbModel;
     private boolean noteExists;
     private Note note;
 
@@ -47,7 +47,7 @@ public class NoteEditActivity extends ActionBarActivity {
         Bundle extras = getIntent().getExtras();
         noteExists = extras.getBoolean(NoteEditActivity.KEY_NOTEEXISTS);
         if (noteExists) {
-            note = controller.getNoteByID(extras.getLong(NoteEditActivity.KEY_NOTEID));
+            note = dbModel.getNoteByID(extras.getLong(NoteEditActivity.KEY_NOTEID));
         }
         else {
             note = new Note(0, "", "", new Date(System.currentTimeMillis()), "#FFFFFF");
@@ -71,10 +71,10 @@ public class NoteEditActivity extends ActionBarActivity {
 
         if (noteExists) {
             if(title.length() == 0 && body.length()==0){
-                controller.deleteNote(note);
+                dbModel.deleteNote(note);
             }
             else {
-                controller.saveNote(note);
+                dbModel.saveNote(note);
             }
         }
         else if(title.length() == 0 && body.length() == 0) {
@@ -83,7 +83,7 @@ public class NoteEditActivity extends ActionBarActivity {
             finish();
         }
         else {
-            controller.createNote(note);
+            dbModel.createNote(note);
         }
         // Closes out of the edit activity
         setResult(RESULT_OK);
@@ -139,7 +139,7 @@ public class NoteEditActivity extends ActionBarActivity {
                     // User clicked the Yes Button (Deletes Note)
                     // The note is not saved
                     if (noteExists) {
-                        controller.deleteNote(note);
+                        dbModel.deleteNote(note);
                     }
                     setResult(RESULT_OK);
                     finish();
