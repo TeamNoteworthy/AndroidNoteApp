@@ -7,6 +7,14 @@ import java.util.ArrayList;
  */
 public interface NoteDBModel {
 
+
+    /**
+     * Sets the adapter to be notified when the data changes
+     * @param adapter The adapter to notify
+     */
+    public void setAdapter(NoteListAdapter adapter);
+    
+    
     /**
      * Refreshes the notes ArrayList for later use with getNotes()
      */
